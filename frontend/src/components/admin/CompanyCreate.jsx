@@ -14,11 +14,14 @@ const CompanyCreate = () => {
     const navigate = useNavigate();
     const [companyName, setCompanyName] = useState();
     const dispatch = useDispatch();
+
     const registerNewCompany = async () => {
+        const token = localStorage.getItem("token"); // ✅ Get JWT
         try {
             const res = await axios.post(`${COMPANY_API_END_POINT}/register`, {companyName}, {
                 headers:{
-                    'Content-Type':'application/json'
+                    'Content-Type':'application/json',
+                     Authorization: `Bearer ${token}`
                 },
                 withCredentials:true
             });
@@ -29,9 +32,10 @@ const CompanyCreate = () => {
                 navigate(`/admin/companies/${companyId}`);
             }
         } catch (error) {
-            console.log(error);
-        }
+             console.error("Company register error:", error);
+             toast.error(error.response?.data?.message || "Something went wrong");
     }
+   }
     return (
         <div>
             <Navbar />
