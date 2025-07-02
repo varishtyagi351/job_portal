@@ -17,7 +17,7 @@ app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cookieParser());
 const corsOptions = {
-    origin:'https://job-portal-5fye3x2s9-varish-tyagis-projects.vercel.app',
+    origin:'https://job-portal-oq2t9vxpe-varish-tyagis-projects.vercel.app',
     credentials:true
 }
 
